@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventory History</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/history.css') }}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/inventory">Inventory</a></li>
+            <li><a href="/history">Inventory History</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <h1>Inventory Change History</h1>
+        <section class="timeline">
+            <h2>Inventory Changes</h2>
+            {% if history %}
+                <ul>
+                    {% for action in history %}
+                    <li>
+                        <strong>{{ action.timestamp }}</strong>: {{ action.quantity }} {{ action.item }} {{ action.action }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No history available.</p>
+            {% endif %}
+        </section>
+    </div>
+</body>
+</html>
